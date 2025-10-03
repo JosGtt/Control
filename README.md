@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# Control de Personal - Sistema Completo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de gestión de personal desarrollado con Laravel (Backend) y React + TypeScript (Frontend).
 
-Currently, two official plugins are available:
+## 📁 Estructura del Proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Control_de_personal/
+├── Backend/          # API Laravel con autenticación Sanctum
+├── Frontend/         # Aplicación React + TypeScript
+└── README.md         # Este archivo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Características
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Autenticación**: Login seguro con Laravel Sanctum
+- **Gestión de Empleados**: CRUD completo con búsqueda avanzada
+- **Base de Datos**: PostgreSQL con relaciones optimizadas
+- **Frontend Moderno**: React con TypeScript y Vite
+- **API RESTful**: Endpoints estructurados y documentados
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ Configuración e Instalación
+
+### Backend (Laravel)
+```bash
+cd Backend
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan serve
 ```
+
+### Frontend (React)
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+## 📋 Funcionalidades
+
+- ✅ Sistema de autenticación
+- ✅ Gestión completa de empleados
+- ✅ Búsqueda avanzada por nombre, apellido, CI
+- ✅ Filtros por área y cargo
+- ✅ Interface responsive
+- ✅ API RESTful completa
+
+## 🔧 Tecnologías Utilizadas
+
+### Backend
+- PHP 8.4
+- Laravel 11
+- PostgreSQL 9.6
+- Laravel Sanctum
+
+### Frontend
+- React 18
+- TypeScript
+- Vite
+- Axios
+- CSS Modules
+
+## 👤 Desarrollador
+
+Desarrollado por José para el control eficiente de personal empresarial.
