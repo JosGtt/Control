@@ -104,9 +104,33 @@ export const authService = {
   },
 };
 
+export interface EmpleadoFormData {
+  nombre: string;
+  apellido: string;
+  ci: string;
+  nacionalidad: string;
+  fecha_entrada: string;
+  fecha_salida?: string;
+  estado: string;
+  observaciones?: string;
+  area_id: number;
+  cargo_id: number;
+}
+
+export interface Area {
+  id: number;
+  nombre: string;
+}
+
+export interface Cargo {
+  id: number;
+  nombre: string;
+  area_id: number;
+}
+
 export const empleadoService = {
   getAll: async (): Promise<Empleado[]> => {
-    const response: AxiosResponse<{data: Empleado[]}> = await api.get('/empleados/test');
+    const response: AxiosResponse<{data: Empleado[]}> = await api.get('/empleados/test?per_page=all');
     return response.data.data;
   },
   
@@ -117,6 +141,39 @@ export const empleadoService = {
   
   search: async (query: string): Promise<Empleado[]> => {
     const response: AxiosResponse<{data: Empleado[]}> = await api.get(`/empleados/search?q=${encodeURIComponent(query)}`);
+    return response.data.data || response.data;
+  },
+
+  create: async (empleado: EmpleadoFormData): Promise<Empleado> => {
+    const response: AxiosResponse<Empleado> = await api.post('/empleados', empleado);
+    return response.data;
+  },
+
+  update: async (id: number, empleado: EmpleadoFormData): Promise<Empleado> => {
+    const response: AxiosResponse<Empleado> = await api.put(`/empleados/${id}`, empleado);
+    return response.data;
+  },
+
+  delete: async (id: number): Promise<void> => {
+    await api.delete(`/empleados/${id}`);
+  },
+};
+
+export const areaService = {
+  getAll: async (): Promise<Area[]> => {
+    const response: AxiosResponse<{data: Area[]}> = await api.get('/areas');
+    return response.data.data || response.data;
+  },
+};
+
+export const cargoService = {
+  getAll: async (): Promise<Cargo[]> => {
+    const response: AxiosResponse<{data: Cargo[]}> = await api.get('/cargos');
+    return response.data.data || response.data;
+  },
+
+  getByArea: async (areaId: number): Promise<Cargo[]> => {
+    const response: AxiosResponse<{data: Cargo[]}> = await api.get(`/areas/${areaId}/cargos`);
     return response.data.data || response.data;
   },
 };

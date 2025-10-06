@@ -3,16 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        try {
+            $areas = Area::all();
+            return response()->json([
+                'data' => $areas
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al obtener áreas',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

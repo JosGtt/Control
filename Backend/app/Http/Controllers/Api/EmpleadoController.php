@@ -45,8 +45,16 @@ class EmpleadoController extends Controller
 
         // Paginación
         $perPage = $request->get('per_page', 15);
+        
+        if ($perPage === 'all' || $perPage === '0') {
+            $empleados = $query->get();
+            return response()->json([
+                'data' => $empleados,
+                'total' => $empleados->count()
+            ]);
+        }
+        
         $empleados = $query->paginate($perPage);
-
         return response()->json($empleados);
     }
 

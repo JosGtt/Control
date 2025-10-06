@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Cargos - Todos los roles pueden ver
     Route::get('/cargos', [CargoController::class, 'index']);
+    Route::get('/areas/{id}/cargos', [CargoController::class, 'getByArea']);
     
     // Rutas solo para administradores
     Route::middleware(['role:Administrador'])->group(function () {
