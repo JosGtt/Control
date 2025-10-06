@@ -106,8 +106,8 @@ export const authService = {
 
 export const empleadoService = {
   getAll: async (): Promise<Empleado[]> => {
-    const response: AxiosResponse<Empleado[]> = await api.get('/empleados');
-    return response.data;
+    const response: AxiosResponse<{data: Empleado[]}> = await api.get('/empleados/test');
+    return response.data.data;
   },
   
   getById: async (id: number): Promise<Empleado> => {
@@ -116,8 +116,8 @@ export const empleadoService = {
   },
   
   search: async (query: string): Promise<Empleado[]> => {
-    const response: AxiosResponse<Empleado[]> = await api.get(`/empleados/search?q=${encodeURIComponent(query)}`);
-    return response.data;
+    const response: AxiosResponse<{data: Empleado[]}> = await api.get(`/empleados/search?q=${encodeURIComponent(query)}`);
+    return response.data.data || response.data;
   },
 };
 

@@ -1,7 +1,24 @@
 import React from "react";
 
-const añadirLogo = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 6.35 6.35" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M3.041.252c-.923 0-1.68.756-1.68 1.68 0 .564.284 1.065.715 1.369A2.727 2.727 0 0 0 .362 5.828c-.008.36.537.36.53 0a2.19 2.19 0 0 1 3.345-1.865c.301.185.578-.267.277-.452a2.72 2.72 0 0 0-.483-.229 1.676 1.676 0 0 0-.99-3.03zm0 .53c.638 0 1.15.512 1.15 1.15S3.678 3.08 3.04 3.08c-.637 0-1.15-.51-1.15-1.148s.513-1.15 1.15-1.15zm1.623 4.501v.53c.008.344.522.344.53 0v-.53h.53c.352 0 .352-.53 0-.53h-.53v-.529a.265.265 0 1 0-.53 0v.53h-.541c-.366.016-.34.546.012.53z" paint-order="stroke fill markers" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg>
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
+  fill?: string;
+}
+
+const AñadirLogo: React.FC<IconProps> = ({ width = 24, height = 24, fill = "#000", ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    fill={fill}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <g>
+      <path fill={fill} fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM8 13a1 1 0 1 1 0-2h3V8a1 1 0 1 1 2 0v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H8z" clipRule="evenodd" opacity="1" />
+    </g>
+  </svg>
 );
 
-export default añadirLogo;
+export default AñadirLogo;

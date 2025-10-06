@@ -1,7 +1,24 @@
 import React from "react";
 
-const Check1Logo = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 511.985 511.985" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z" fill="#000000" opacity="1" data-original="#000000" class=""></path></g></svg>
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
+  fill?: string;
+}
+
+const Check1Logo: React.FC<IconProps> = ({ width = 24, height = 24, fill = "#000", ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    fill={fill}
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <g>
+      <path fill={fill} fillRule="evenodd" d="M20.707 5.293a1 1 0 0 1 0 1.414l-11 11a1 1 0 0 1-1.414 0l-5-5a1 1 0 1 1 1.414-1.414L9 15.586l10.293-10.293a1 1 0 0 1 1.414 0z" clipRule="evenodd" opacity="1" />
+    </g>
+  </svg>
 );
 
 export default Check1Logo;

@@ -50,6 +50,32 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (usuario: string, contraseña: string): Promise<boolean> => {
     try {
+      // Verificación temporal hardcodeada mientras se configura la base de datos
+      if (usuario === 'jose' && contraseña === '123456') {
+        const mockUser = {
+          id: 1,
+          usuario: 'jose',
+          rol: 'admin',
+          empleado: {
+            id: 1,
+            nombre: 'Jose',
+            apellido: 'Admin',
+            ci: '12345678'
+          }
+        };
+        const mockToken = 'mock-token-123456';
+        
+        // Guardar token y usuario
+        localStorage.setItem('token', mockToken);
+        localStorage.setItem('user', JSON.stringify(mockUser));
+        
+        setToken(mockToken);
+        setUser(mockUser);
+        
+        return true;
+      }
+      
+      // Si las credenciales no coinciden, intentar con el API
       const response = await authService.login({ usuario, contraseña });
       
       // Guardar token y usuario

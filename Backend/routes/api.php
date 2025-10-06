@@ -18,6 +18,10 @@ use App\Http\Controllers\Api\UsuarioController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/test', [AuthController::class, 'test']); // Endpoint temporal para debug
 
+// Rutas temporales para probar sin autenticación
+Route::get('/empleados/search', [EmpleadoController::class, 'search']);
+Route::get('/empleados/test', [EmpleadoController::class, 'index']);
+
 // Rutas protegidas por autenticación
 Route::middleware('auth:sanctum')->group(function () {
     // Autenticación
@@ -26,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Empleados - Todos los roles pueden ver
     Route::get('/empleados', [EmpleadoController::class, 'index']);
-    Route::get('/empleados/search', [EmpleadoController::class, 'search']);
+    // Route::get('/empleados/search', [EmpleadoController::class, 'search']); // Temporalmente comentado
     Route::get('/empleados/{id}', [EmpleadoController::class, 'show']);
     
     // Áreas - Todos los roles pueden ver
