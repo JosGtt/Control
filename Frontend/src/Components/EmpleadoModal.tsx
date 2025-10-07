@@ -38,31 +38,27 @@ const EmpleadoModal: React.FC<EmpleadoModalProps> = ({
   // Cargar datos iniciales
   useEffect(() => {
     if (isOpen) {
+      console.log("🚀 Modal abierto, cargando datos iniciales...");
       loadAreas();
       // También cargar todos los cargos para debug
-      loadAllCargos();
+
     }
   }, [isOpen]);
 
-  const loadAllCargos = async () => {
-    try {
-      const allCargos = await cargoService.getAll();
-      console.log("Todos los cargos:", allCargos);
-    } catch (error) {
-      console.error("Error al cargar todos los cargos:", error);
-    }
-  };
+
 
   // Cargar datos del empleado si estamos editando
   useEffect(() => {
     if (empleado) {
+      console.log("Empleado a editar:", empleado);
+      console.log("Area del empleado:", empleado.area);
       setFormData({
         nombre: empleado.nombre,
         apellido: empleado.apellido,
         ci: empleado.ci,
         nacionalidad: empleado.nacionalidad,
-        fecha_entrada: empleado.fecha_entrada,
-        fecha_salida: empleado.fecha_salida || "",
+        fecha_entrada: empleado.fecha_entrada.split('T')[0], // Formatear fecha para input date
+        fecha_salida: empleado.fecha_salida ? empleado.fecha_salida.split('T')[0] : "",
         estado: empleado.estado,
         observaciones: empleado.observaciones || "",
         area_id: empleado.area.id,
@@ -92,32 +88,43 @@ const EmpleadoModal: React.FC<EmpleadoModalProps> = ({
   useEffect(() => {
     if (formData.area_id > 0) {
       loadCargosByArea(formData.area_id);
+    } else {
+      setCargos([]);
     }
   }, [formData.area_id]);
 
   const loadAreas = async () => {
     try {
+      console.log("🔄 Intentando cargar áreas...");
       const areasData = await areaService.getAll();
+      console.log("✅ Áreas cargadas exitosamente:", areasData);
       setAreas(areasData);
-    } catch (error) {
-      console.error("Error al cargar áreas:", error);
+    } catch (error: any) {
+      console.error("❌ Error al cargar áreas:", error);
+      console.error("Detalles del error:", error.response?.data);
+      console.error("Status del error:", error.response?.status);
     }
   };
 
   const loadCargosByArea = async (areaId: number) => {
     try {
-      console.log("Cargando cargos para área:", areaId);
       const cargosData = await cargoService.getByArea(areaId);
-      console.log("Cargos obtenidos:", cargosData);
       setCargos(cargosData);
       
-      // Si estamos editando, mantener el cargo actual si pertenece al área
+      // Si estamos creando un nuevo empleado, limpiar el cargo seleccionado
       if (!empleado) {
         setFormData(prev => ({ ...prev, cargo_id: 0 }));
+      } else {
+        // Si estamos editando, verificar si el cargo actual pertenece a la nueva área
+        const cargoExisteEnArea = cargosData.some(cargo => cargo.id === empleado.cargo.id);
+        if (!cargoExisteEnArea) {
+          setFormData(prev => ({ ...prev, cargo_id: 0 }));
+        }
       }
     } catch (error) {
       console.error("Error al cargar cargos:", error);
       setCargos([]);
+      setFormData(prev => ({ ...prev, cargo_id: 0 }));
     }
   };
 

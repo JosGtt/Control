@@ -32,6 +32,7 @@ const QuickActions: React.FC<QuickActionsProps> = ({ setActiveSection }) => {
       label: "Añadir Empleado",
       icon: AñadirLogo,
       color: "#059669",
+      
     },
     {
       id: "history",

@@ -44,10 +44,10 @@ const InicioSec: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-emerald-50">
       <div className="bg-white p-8 rounded-xl shadow-lg w-96 flex flex-col items-center">
         <div className="mb-6">
-          <UsuarioLogo width={80} height={80} fill="#000" />
+          <UsuarioLogo width={80} height={80} fill="#059669" />
         </div>
         
         <form onSubmit={handleSubmit} className="w-full">
@@ -56,14 +56,14 @@ const InicioSec: React.FC = () => {
               placeholder="Usuario"
               value={usuario}
               onChange={e => setUsuario(e.target.value)}
-              icon={<UsuarioLogo width={24} height={24} fill="#6C2EFF" />}
+              icon={<UsuarioLogo width={24} height={24} fill="#059669" />}
             />
             <InputText
               type={mostrar ? "text" : "password"}
               placeholder="Contraseña"
               value={contrasena}
               onChange={e => setContrasena(e.target.value)}
-              icon={<ContraLogo width={24} height={24} fill="#6C2EFF" />}
+              icon={<ContraLogo width={24} height={24} fill="#059669" />}
             >
               <button
                 type="button"
@@ -72,9 +72,9 @@ const InicioSec: React.FC = () => {
                 tabIndex={-1}
               >
                 {mostrar ? (
-                  <OjoLogo width={24} height={24} fill="#6C2EFF" />
+                  <OjoLogo width={24} height={24} fill="#059669" />
                 ) : (
-                  <OjoCerradoLogo width={24} height={24} fill="#6C2EFF" />
+                  <OjoCerradoLogo width={24} height={24} fill="#059669" />
                 )}
               </button>
             </InputText>
@@ -89,7 +89,7 @@ const InicioSec: React.FC = () => {
           <button 
             type="submit"
             disabled={isLoading}
-            className="bg-indigo-600 text-white w-full py-2 rounded mt-6 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-emerald-600 text-white w-full py-2 rounded mt-6 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>

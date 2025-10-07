@@ -22,6 +22,15 @@ Route::get('/test', [AuthController::class, 'test']); // Endpoint temporal para 
 Route::get('/empleados/search', [EmpleadoController::class, 'search']);
 Route::get('/empleados/test', [EmpleadoController::class, 'index']);
 
+// Rutas temporales sin autenticación para desarrollo
+Route::get('/temp/areas', [AreaController::class, 'index']);
+Route::get('/temp/cargos', [CargoController::class, 'index']);
+Route::get('/temp/areas/{id}/cargos', [CargoController::class, 'getByArea']);
+Route::get('/temp/empleados', [EmpleadoController::class, 'index']);
+Route::post('/temp/empleados', [EmpleadoController::class, 'store']);
+Route::put('/temp/empleados/{id}', [EmpleadoController::class, 'update']);
+Route::delete('/temp/empleados/{id}', [EmpleadoController::class, 'destroy']);
+
 // Rutas protegidas por autenticación
 Route::middleware('auth:sanctum')->group(function () {
     // Autenticación

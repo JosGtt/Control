@@ -38,7 +38,7 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          {/* Redireccionar cualquier ruta no encontrada */}
+          
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>

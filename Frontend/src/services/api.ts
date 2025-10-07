@@ -27,9 +27,11 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Token expirado o inválido
+      console.error('Error 401 - No autorizado:', error);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/';
+      // Comentado temporalmente para debugging
+      // window.location.href = '/';
     }
     return Promise.reject(error);
   }
@@ -145,35 +147,35 @@ export const empleadoService = {
   },
 
   create: async (empleado: EmpleadoFormData): Promise<Empleado> => {
-    const response: AxiosResponse<Empleado> = await api.post('/empleados', empleado);
+    const response: AxiosResponse<Empleado> = await api.post('/temp/empleados', empleado);
     return response.data;
   },
 
   update: async (id: number, empleado: EmpleadoFormData): Promise<Empleado> => {
-    const response: AxiosResponse<Empleado> = await api.put(`/empleados/${id}`, empleado);
+    const response: AxiosResponse<Empleado> = await api.put(`/temp/empleados/${id}`, empleado);
     return response.data;
   },
 
   delete: async (id: number): Promise<void> => {
-    await api.delete(`/empleados/${id}`);
+    await api.delete(`/temp/empleados/${id}`);
   },
 };
 
 export const areaService = {
   getAll: async (): Promise<Area[]> => {
-    const response: AxiosResponse<{data: Area[]}> = await api.get('/areas');
+    const response: AxiosResponse<{data: Area[]}> = await api.get('/temp/areas');
     return response.data.data || response.data;
   },
 };
 
 export const cargoService = {
   getAll: async (): Promise<Cargo[]> => {
-    const response: AxiosResponse<{data: Cargo[]}> = await api.get('/cargos');
+    const response: AxiosResponse<{data: Cargo[]}> = await api.get('/temp/cargos');
     return response.data.data || response.data;
   },
 
   getByArea: async (areaId: number): Promise<Cargo[]> => {
-    const response: AxiosResponse<{data: Cargo[]}> = await api.get(`/areas/${areaId}/cargos`);
+    const response: AxiosResponse<{data: Cargo[]}> = await api.get(`/temp/areas/${areaId}/cargos`);
     return response.data.data || response.data;
   },
 };

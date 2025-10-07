@@ -3,9 +3,9 @@ import { type Empleado } from "../../services/api";
 
 // Importar iconos
 import UsuarioLogo from "../../assets/usario";
-import GuardarOnLogo from "../../assets/guardaron";
-import GuardarOffLogo from "../../assets/guardaroff";
 import CargoLogo from "../../assets/cargo";
+import UserCheckLogo from "../../assets/userCheck";
+import UserXLogo from "../../assets/userX";
 
 interface StatsCardsProps {
   empleados: Empleado[];
@@ -30,13 +30,13 @@ const StatsCards: React.FC<StatsCardsProps> = ({ empleados }) => {
     {
       title: "Empleados Activos",
       value: empleados.filter(e => e.estado === 'activo').length,
-      icon: GuardarOnLogo,
+      icon: UserCheckLogo,
       color: "bg-emerald-600",
     },
     {
       title: "Empleados Finalizados",
       value: empleados.filter(e => e.estado === 'finalizado').length,
-      icon: GuardarOffLogo,
+      icon: UserXLogo,
       color: "bg-red-600",
     },
     {
